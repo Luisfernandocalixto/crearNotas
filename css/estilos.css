@@ -1,0 +1,132 @@
+body {
+    background-color: black;
+    color: #fff;
+    font-family: Arial;
+
+}
+
+.centrarModal {
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal {
+    border-radius: 12px;
+    height: 350px;
+    display: none;
+    padding: 11px;
+    position: fixed;
+    z-index: 1;
+    overflow: auto;
+    background-color: #222;
+}
+
+.contenido-modal {
+    position: relative;
+    background-color: transparent;
+    -webkit-animation-name: animarsuperior;
+    -webkit-animation-duration: 0.5s;
+    animation-name: animarsuperior;
+    animation-duration: 0.5s;
+}
+
+@-webkit-keyframes animarsuperior {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+
+    top {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes animarsuperior {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+
+    top {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.contenedor {
+    border-radius: 12px;
+    display: grid;
+    justify-content: center;
+}
+
+.contenedorBoton {
+    padding-bottom: 5px;
+}
+
+.contenedorBoton .boton1 {
+    float: left;
+}
+
+.contenedorBoton .boton2 {
+    float: right;
+}
+
+.contenedorNotas {
+    background: #222222;
+    border-radius: 8px;
+}
+
+.contenedorTexto {
+    background: #222222;
+    border-radius: 8px;
+}
+
+input {
+    background-color: #222222;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    width: 280px;
+}
+
+.nota {
+    margin-top: 20px;
+    height: 100px;
+}
+
+.contenedorNotas div {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding: 5px;
+    border-radius: 8px;
+    width: 300px;
+    border: 2px solid gray;
+}
+
+button {
+    margin-top: 12px;
+    width: 40px;
+    height: 40px;
+    background-color: orange;
+    color: #fff;
+    border-radius: 100%;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+}
+
+button:active {
+    background-color: #d2d2d2;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    color: black;
+}
