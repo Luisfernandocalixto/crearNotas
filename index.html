@@ -7,10 +7,10 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Notas personales">
     <meta property="og:url" content="https://crea-notas.netlify.app">
-    <meta property="og:image" content="https://img.icons8.com/officel/16/making-notes.png">
+    <meta property="og:image" content="/img/16/making-notes.png">
     <meta property="og:description" content="Ven y crea tus propias notas personales">
     <title>Creando Notas</title>
-    <link rel="shortcut icon" href="https://img.icons8.com/officel/16/making-notes.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/making-notes.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/estilos.css">
 
 </head>
@@ -22,17 +22,40 @@
         <div id="ventanaModal" class="modal">
             <div class="contenido-modal">
 
-                <form action="" id="formulario">
+                <form  id="formulario">
 
                     <div class="contenedorNotas">
                         <div>
                             <input id="titulo" class="titulo" placeholder="Titulo">
-                            <input id="nota" class="nota" placeholder="Nota">
+                            <textarea id="nota" rows="5" class="nota" placeholder="Nota"></textarea>
                         </div>
 
                     </div>
                     <div class="contenedorBoton">
                         <button type="submit" class="boton1">✖</button>
+                        <button type="submit" class="boton2">✔️</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="contenido-modal">
+
+                <form>
+
+                    <div class="contenedorNotas">
+                        <div>
+                            <input  class="titulo" placeholder="Titulo">
+                            <textarea  rows="5" class="nota" placeholder="Nota"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="contenedorBoton">
+                        <button type="button" class="boton1">✖</button>
                         <button type="submit" class="boton2">✔️</button>
                     </div>
 
@@ -65,7 +88,8 @@
 
     </div>
 
-    <script src="./js/script.js"></script>
+    <!-- script -->
+    <script type="module" src="./js/script.js"></script>
 </body>
 
 </html>
