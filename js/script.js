@@ -2,54 +2,54 @@ import {  buttons } from "./functions.js"
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  let boton = document.getElementById('abrirModal') // para abrir modal => id ="abrirModal"
-  let modal = document.getElementById('ventanaModal') // para referenciar donde se muestra el modal en pantalla => id="ventanaModal"
-  let modalActualizar = document.getElementById('modal') // para referenciar donde se muestra el modal en pantalla => id="modal"
-  let resultado = document.getElementById('contenedorNotas') // Se agrega al HTML => id="contenedorNotas"
+  let btnOpenModal = document.getElementById('btnOpenModal'); // for open modal => id ="btnOpenModal"
+  let modal = document.getElementById('windowModal'); // for reference where is show the modal in screen => id="windowModal"
+  let modalUpdate = document.getElementById('modal'); // for reference where is show the modal in screen => id="modal"
+  let containerNotes = document.getElementById('containerNotes'); // Is aggregate a HTML => id="containerNotes"
 
-  if (JSON.parse(localStorage.getItem('tareas'))) resultado.innerHTML = JSON.parse(localStorage.getItem('tareas'));
+  if (JSON.parse(localStorage.getItem('tasks'))) containerNotes.innerHTML = JSON.parse(localStorage.getItem('tasks'));
 
-  boton.addEventListener("click", function () {
-    modal.style.display = "block" // mostrar modal => de none a block
+  btnOpenModal.addEventListener("click", function () {
+    modal.style.display = "block"; // show modal => of none a block
 
   })
 
-  document.getElementById('formulario').addEventListener('submit', (event) => {
-    event.preventDefault()
+  document.getElementById('form').addEventListener('submit', (event) => {
+    event.preventDefault();
 
-    let textoTitulo = document.getElementById('titulo')  // Entrada para el titulo => id="titulo"
-    let textoNota = document.getElementById('nota') //Entrada para asunto => id="nota"
+    let textTitle = document.getElementById('title');  // Input for the title => id="title"
+    let textNote = document.getElementById('note'); //Input for subject => id="note"
 
-    if (textoTitulo.value.trim() === '' && textoNota.value.trim() === '') {
-      modal.style.display = 'none'
-      return // Para no mostrar ni crear nota vacia 
+    if (textTitle.value.trim() === '' && textNote.value.trim() === '') {
+      modal.style.display = 'none';
+      return; // For not show and not create note empty 
     }
 
-    let section = document.createElement('section') // Div para cada nota
+    let section = document.createElement('section'); // Div for each note
     section.innerHTML = buttons;
-    let contenedor = document.createElement('div') // Div para cada nota
+    let container = document.createElement('div'); // Div for each note
 
-    let contenedorTitulo = document.createElement('h2') // Para el titulo 
-    contenedorTitulo.textContent = textoTitulo.value
+    let containerTitle = document.createElement('h2'); // For the title 
+    containerTitle.textContent = textTitle.value
 
-    let contenedorNota = document.createElement('p') // Para el asunto
-    contenedorNota.textContent = textoNota.value
+    let containerNote = document.createElement('p'); // For the subject
+    containerNote.textContent = textNote.value;
 
-    contenedor.appendChild(section) // Se agrega el titulo
-    contenedor.appendChild(contenedorTitulo) // Se agrega el titulo
-    contenedor.appendChild(contenedorNota) // Se agrega el asunto
+    container.appendChild(section) // Is added a title
+    container.appendChild(containerTitle) // Is added a title
+    container.appendChild(containerNote) // Is added a subject
 
-    resultado.appendChild(contenedor)  // Se crea la nota con los elementos
+    containerNotes.appendChild(container)  // Is create the note with the elements
 
-    const items = resultado.querySelectorAll('div');
+    const items = containerNotes.querySelectorAll('div');
 
-    const localDivs = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('')
-    window.localStorage.setItem('tareas', JSON.stringify(localDivs))
+    const localDiv = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('')
+    window.localStorage.setItem('tasks', JSON.stringify(localDiv))
 
 
 
-    if (!textoTitulo.textContent && !textoNota.textContent) {
-      document.getElementById('formulario').reset()  // Limpiar campos del form
+    if (!textTitle.textContent && !textNote.textContent) {
+      document.getElementById('form').reset()  // Clear fields of the form
       modal.style.display = "none"
 
     }
@@ -57,56 +57,56 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   document.addEventListener('click',  function (e) {
-    if (e.target.matches('.eliminar')) {
+    if (e.target.matches('.delete')) {
       const div = e.target.closest("div");
       div.remove();
-      window.localStorage.removeItem('tareas');
-      const items = resultado.querySelectorAll('div');
+      window.localStorage.removeItem('tasks');
+      const items = containerNotes.querySelectorAll('div');
 
-      const localDivs = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('');
-      window.localStorage.setItem('tareas', JSON.stringify(localDivs));
+      const localDiv = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('');
+      window.localStorage.setItem('tasks', JSON.stringify(localDiv));
 
     }
 
-    if (e.target.matches('.editar')) {
+    if (e.target.matches('.edit')) {
       const elemDiv = e.target.closest('div');
-      const titulo = elemDiv.querySelector('h2').textContent;
-      const nota = elemDiv.querySelector('p').textContent;
+      const title = elemDiv.querySelector('h2').textContent;
+      const note = elemDiv.querySelector('p').textContent;
 
-      modalActualizar.querySelector('input.titulo').value = titulo;
-      modalActualizar.querySelector('textarea.nota').value = nota;
-      modalActualizar.style.display = 'block';
+      modalUpdate.querySelector('input.title').value = title;
+      modalUpdate.querySelector('textarea.note').value = note;
+      modalUpdate.style.display = 'block';
 
-      modalActualizar.querySelector('button').onclick = () => {
-        modalActualizar.style.display = 'none';
+      modalUpdate.querySelector('button').onclick = () => {
+        modalUpdate.style.display = 'none';
       }
 
-      modalActualizar.querySelector('form').onsubmit = (event) => {
-        event.preventDefault()
+      modalUpdate.querySelector('form').onsubmit = (event) => {
+        event.preventDefault();
 
 
-        const inputTitulo = modalActualizar.querySelector('input.titulo');
-        const inputNota = modalActualizar.querySelector('textarea.nota');
+        const inputTitle = modalUpdate.querySelector('input.title');
+        const inputNota = modalUpdate.querySelector('textarea.note');
 
-        if (inputTitulo.value.trim() === '' && inputNota.value.trim() === '') {
-          modalActualizar.style.display = 'none'
+        if (inputTitle.value.trim() === '' && inputNota.value.trim() === '') {
+          modalUpdate.style.display = 'none'
         }
 
 
 
-        elemDiv.querySelector('h2').textContent = inputTitulo.value
+        elemDiv.querySelector('h2').textContent = inputTitle.value
         elemDiv.querySelector('p').textContent = inputNota.value
 
 
-        if (!titulo.textContent && !nota.textContent) {
-          modalActualizar.querySelector('form').reset()  // Limpiar campos del form
-          modalActualizar.style.display = "none";
+        if (!title.textContent && !note.textContent) {
+          modalUpdate.querySelector('form').reset()  // Clear fields of the form
+          modalUpdate.style.display = "none";
 
-          window.localStorage.removeItem('tareas');
-          const items = resultado.querySelectorAll('div');
+          window.localStorage.removeItem('tasks');
+          const items = containerNotes.querySelectorAll('div');
 
-          const localDivs = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('');
-          window.localStorage.setItem('tareas', JSON.stringify(localDivs));
+          const localDiv = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('');
+          window.localStorage.setItem('tasks', JSON.stringify(localDiv));
 
 
         }

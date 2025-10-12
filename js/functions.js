@@ -1,10 +1,10 @@
 
 export const buttons =
     `
-      <button class="eliminar">
+      <button class="delete">
         ❌
       </button>
-      <button class="editar">
+      <button class="edit">
         ✍
       </button>
       `;
