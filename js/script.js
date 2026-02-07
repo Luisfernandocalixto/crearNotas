@@ -35,22 +35,22 @@ document.addEventListener('DOMContentLoaded', function () {
     let containerNote = document.createElement('p'); // For the subject
     containerNote.textContent = textNote.value;
 
-    container.appendChild(section) // Is added a title
-    container.appendChild(containerTitle) // Is added a title
-    container.appendChild(containerNote) // Is added a subject
+    container.appendChild(section); // Is added a title
+    container.appendChild(containerTitle); // Is added a title
+    container.appendChild(containerNote); // Is added a subject
 
-    containerNotes.appendChild(container)  // Is create the note with the elements
+    containerNotes.appendChild(container);  // Is create the note with the elements
 
     const items = containerNotes.querySelectorAll('div');
 
     const localDiv = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('')
-    window.localStorage.setItem('tasks', JSON.stringify(localDiv))
+    window.localStorage.setItem('tasks', JSON.stringify(localDiv));
 
 
 
     if (!textTitle.textContent && !textNote.textContent) {
-      document.getElementById('form').reset()  // Clear fields of the form
-      modal.style.display = "none"
+      document.getElementById('form').reset();  // Clear fields of the form
+      modal.style.display = "none";
 
     }
 
@@ -58,13 +58,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.addEventListener('click',  function (e) {
     if (e.target.matches('.delete')) {
-      const div = e.target.closest("div");
-      div.remove();
-      window.localStorage.removeItem('tasks');
-      const items = containerNotes.querySelectorAll('div');
+      const messageConfirm = window.confirm('Estas seguro de eliminar la nota?');
+      if (messageConfirm) {
+        const div = e.target.closest("div");
+        div.remove();
+        window.localStorage.removeItem('tasks');
+        const items = containerNotes.querySelectorAll('div');
 
-      const localDiv = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('');
-      window.localStorage.setItem('tasks', JSON.stringify(localDiv));
+        const localDiv = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('');
+        window.localStorage.setItem('tasks', JSON.stringify(localDiv));
+
+      } 
 
     }
 
@@ -94,12 +98,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-        elemDiv.querySelector('h2').textContent = inputTitle.value
-        elemDiv.querySelector('p').textContent = inputNota.value
+        elemDiv.querySelector('h2').textContent = inputTitle.value;
+        elemDiv.querySelector('p').textContent = inputNota.value;
 
 
         if (!title.textContent && !note.textContent) {
-          modalUpdate.querySelector('form').reset()  // Clear fields of the form
+          modalUpdate.querySelector('form').reset();  // Clear fields of the form
           modalUpdate.style.display = "none";
 
           window.localStorage.removeItem('tasks');

@@ -12,6 +12,7 @@ body {
 }
 
 .modal {
+    top: 10px;
     border-radius: 12px;
     height: 350px;
     display: none;
@@ -64,6 +65,8 @@ body {
 
 .containerButton {
     padding-bottom: 5px;
+    position: fixed;
+
 }
 
 .containerButton .button1 {
@@ -124,9 +127,6 @@ input {
     }
 }
 
-.containerButton {
-    position: fixed;
-}
 
 button {
     margin-top: 12px;

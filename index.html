@@ -7,7 +7,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Notas personales">
     <meta property="og:url" content="https://crea-notas.netlify.app">
-    <meta property="og:image" content="/img/16/making-notes.png">
+    <meta property="og:image" content="https://crea-notas.netlify.app/img/making-notes.png">
     <meta property="og:description" content="Ven y crea tus propias notas personales">
     <meta name="description" content="Ven y crea tus propias notas personales">
     <title>Creando Notas</title>
@@ -18,76 +18,83 @@
 
 <body>
 
-    <div class="centerModal">
+    <main>
 
-        <div id="windowModal" class="modal">
-            <div class="content-modal">
+        <div class="container" id="container">
 
-                <form  id="form">
+            <div class="containerNotes" id="containerNotes">
+                <div>
+                    <h2>Recado</h2>
+                    <p>Comprar utiles</p>
+                </div>
 
-                    <div class="containerNotes">
-                        <div>
-                            <input id="title" class="title" placeholder="Titulo">
-                            <textarea id="note" rows="5" class="note" placeholder="Nota"></textarea>
+                <div>
+                    <h2>Asunto</h2>
+                    <p>Reunion programada para padres de familia</p>
+                </div>
+
+            </div>
+
+            <div class="containerButton">
+                <button class="create" id="btnOpenModal">➕</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+
+        <div class="centerModal">
+
+            <div id="windowModal" class="modal">
+                <div class="content-modal">
+
+                    <form id="form">
+
+                        <div class="containerNotes">
+                            <div>
+                                <input id="title" class="title" placeholder="Titulo">
+                                <textarea id="note" rows="5" class="note" placeholder="Nota"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="containerButton">
+                            <button type="submit" class="button1">✖</button>
+                            <button type="submit" class="button2">✔️</button>
                         </div>
 
-                    </div>
-                    <div class="containerButton">
-                        <button type="submit" class="button1">✖</button>
-                        <button type="submit" class="button2">✔️</button>
-                    </div>
+                    </form>
 
-                </form>
+                </div>
 
             </div>
 
-        </div>
+            <div id="modal" class="modal">
+                <div class="content-modal">
 
-        <div id="modal" class="modal">
-            <div class="content-modal">
+                    <form>
 
-                <form>
+                        <div class="containerNotes">
+                            <div>
+                                <input class="title" name="title" placeholder="Titulo">
+                                <textarea rows="5" class="note" name="description" placeholder="Nota"></textarea>
+                            </div>
 
-                    <div class="containerNotes">
-                        <div>
-                            <input  class="title" placeholder="Titulo">
-                            <textarea  rows="5" class="note" placeholder="Nota"></textarea>
+                        </div>
+                        <div class="containerButton">
+                            <button type="button" class="button1">✖</button>
+                            <button type="submit" class="button2">✔️</button>
                         </div>
 
-                    </div>
-                    <div class="containerButton">
-                        <button type="button" class="button1">✖</button>
-                        <button type="submit" class="button2">✔️</button>
-                    </div>
+                    </form>
 
-                </form>
+                </div>
 
             </div>
 
         </div>
+    </footer>
 
-    </div>
-
-    <div class="container" id="container">
-
-        <div class="containerNotes" id="containerNotes">
-            <div>
-                <h2>Recado</h2>
-                <p>Comprar utiles</p>
-            </div>
-
-            <div>
-                <h2>Asunto</h2>
-                <p>Reunion programada para padres de familia</p>
-            </div>
-
-        </div>
-
-        <div class="containerButton">
-            <button class="create" id="btnOpenModal">➕</button>
-        </div>
-
-    </div>
 
     <!-- script -->
     <script type="module" src="./js/script.js"></script>
