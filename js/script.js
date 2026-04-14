@@ -1,4 +1,4 @@
-import {  buttons } from "./functions.js"
+import { buttons } from "./functions.js";
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (JSON.parse(localStorage.getItem('tasks'))) containerNotes.innerHTML = JSON.parse(localStorage.getItem('tasks'));
 
   btnOpenModal.addEventListener("click", function () {
-    modal.style.display = "block"; // show modal => of none a block
-
-  })
+    modal.showModal();
+  });
 
   document.getElementById('form').addEventListener('submit', (event) => {
     event.preventDefault();
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let textNote = document.getElementById('note'); //Input for subject => id="note"
 
     if (textTitle.value.trim() === '' && textNote.value.trim() === '') {
-      modal.style.display = 'none';
+      modal.close();
       return; // For not show and not create note empty 
     }
 
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let container = document.createElement('div'); // Div for each note
 
     let containerTitle = document.createElement('h2'); // For the title 
-    containerTitle.textContent = textTitle.value
+    containerTitle.textContent = textTitle.value;
 
     let containerNote = document.createElement('p'); // For the subject
     containerNote.textContent = textNote.value;
@@ -43,18 +42,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const items = containerNotes.querySelectorAll('div');
 
-    const localDiv = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('')
+    const localDiv = Array.from(items).map(item => `<div> ${item.innerHTML} </div>`).join('');
     window.localStorage.setItem('tasks', JSON.stringify(localDiv));
 
 
 
     if (!textTitle.textContent && !textNote.textContent) {
       document.getElementById('form').reset();  // Clear fields of the form
-      modal.style.display = "none";
+      modal.close();
 
     }
 
-  })
+  });
 
   document.addEventListener('click',  function (e) {
     if (e.target.matches('.delete')) {
@@ -79,10 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       modalUpdate.querySelector('input.title').value = title;
       modalUpdate.querySelector('textarea.note').value = note;
-      modalUpdate.style.display = 'block';
+      modalUpdate.showModal();
 
       modalUpdate.querySelector('button').onclick = () => {
-        modalUpdate.style.display = 'none';
+        modalUpdate.close();
       }
 
       modalUpdate.querySelector('form').onsubmit = (event) => {
@@ -93,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const inputNota = modalUpdate.querySelector('textarea.note');
 
         if (inputTitle.value.trim() === '' && inputNota.value.trim() === '') {
-          modalUpdate.style.display = 'none'
+          modalUpdate.close();
         }
 
 
@@ -104,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!title.textContent && !note.textContent) {
           modalUpdate.querySelector('form').reset();  // Clear fields of the form
-          modalUpdate.style.display = "none";
+          modalUpdate.close();
 
           window.localStorage.removeItem('tasks');
           const items = containerNotes.querySelectorAll('div');
@@ -118,6 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-  })
+  });
 
 });
